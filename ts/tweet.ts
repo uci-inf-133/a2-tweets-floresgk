@@ -10,7 +10,21 @@ class Tweet {
 	//returns either 'live_event', 'achievement', 'completed_event', or 'miscellaneous'
     get source():string {
         //TODO: identify whether the source is a live event, an achievement, a completed event, or miscellaneous.
-        return "unknown";
+        const TWEET_TXT = this.text.toLowerCase().trim();
+
+        if (TWEET_TXT.startsWith("just completed") || 
+            TWEET_TXT.startsWith("just posted") || 
+            TWEET_TXT.startsWith("just finished") || TWEET_TXT.startsWith("completed")) {
+            return "completed_event";
+        } else if (TWEET_TXT.startsWith("achieved")) {
+            return "achievement";
+        } else if (TWEET_TXT.startsWith("watch my") && TWEET_TXT.includes("right now")) {
+            return "live_event";
+        } else {
+            return "miscellaneous";
+        }
+        
+          //  return "unknown";
     }
 
     //returns a boolean, whether the text includes any content written by the person tweeting.
