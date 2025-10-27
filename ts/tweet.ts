@@ -30,7 +30,29 @@ class Tweet {
     //returns a boolean, whether the text includes any content written by the person tweeting.
     get written():boolean {
         //TODO: identify whether the tweet is written
-        return false;
+        const RID_HASHTAG = /#RunKeeper/gi;
+        const RID_LINK = /https?:\/\/\S+/g;
+        let STRIPPED_TWT = this.text.replace(RID_HASHTAG, "").replace(RID_LINK, "").toLowerCase();
+        
+        const phrases = [
+            "just completed a",
+            "completed", 
+            "check it out!",
+            "just posted a",
+            "with @Runkeeper.",
+            "elliptical workout",
+            "nordic walk", 
+            "achieved a new personal record",
+            "#fitnessalerts"
+        ]
+
+        phrases.forEach(phrase => {
+            STRIPPED_TWT = STRIPPED_TWT.replace(new RegExp(phrase, "gi"), "");
+        })
+
+        return STRIPPED_TWT.trim().split(/\s+/).length > 3;
+        // if true length is > 3 then there is extra user writing 
+        // else if false no extra
     }
 
     get writtenText():string {
