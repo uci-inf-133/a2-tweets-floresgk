@@ -28,6 +28,7 @@
         - Clarifying how to make the connection with activity type
              and distances to calculate the longest/shortest distances
         - I messed up the average for weekends and weekdays so I asked how to fix the calculations for it 
+        - Asked about how dynamic changing charts work  
         
 
 
